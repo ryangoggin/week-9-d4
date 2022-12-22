@@ -19,6 +19,7 @@ function restoreTheme() {
 
 function clearTheme() {
     // Your code here
+    //can use localStorage.clear() to clear ALL of local storage too
     localStorage.removeItem("theme");
 }
 
