@@ -9,9 +9,9 @@ function storeTheme(themeName) {
 // For restoring theme, if selected by the user in the past
 function restoreTheme() {
     // Your code here
-    let themeCookie = localStorage.getItem("theme");
-    if (themeCookie) {
-        setTheme(themeCookie);
+    let themeName = localStorage.getItem("theme");
+    if (themeName) {
+        setTheme(themeName);
     }
 }
 
@@ -33,9 +33,9 @@ function storeName(displayName) {
 // For restoring user's display name, if set in the past
 function restoreName() {
     // Your code here
-    let displayCookie = sessionStorage.getItem("display");
-    if (displayCookie) {
-        setInputValue("display-name", displayCookie);
+    let displayName = sessionStorage.getItem("display");
+    if (displayName) {
+        setInputValue("display-name", displayName);
     }
 }
 
