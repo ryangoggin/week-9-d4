@@ -74,8 +74,13 @@ const createCommentSubmitBtn = () => {
 
 const submitComment = e => {
     e.preventDefault();
+    const commentForm = document.querySelector(".comment-form");
+    const formData = new FormData(commentForm);
+    const commentText = formData.get("user-comment");
+    console.log(commentText);
+
     const commentInput = document.querySelector('#user-comment');
-    const commentText = commentInput.value;
+    // const commentText = commentInput.value;
     createComment(commentText);
     commentInput.value = "";
 }

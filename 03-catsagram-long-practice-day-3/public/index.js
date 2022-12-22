@@ -11,11 +11,23 @@ const initializePage = () => {
     container.style.alignItems = "center";
     container.style.marginTop = "20px";
     document.body.appendChild(container);
+
+    createMainContent();
+    createScoreContainer();
+    createCommentSection();
+
+    //only use fetchImage if imgURL not already in localStorage
+    if (localStorage.imgURL) {
+        const kittenImg = document.querySelector('img');
+        kittenImg.src = localStorage.imgURL;
+
+        const kittenScore = document.querySelector(".score");
+        kittenScore.innerText = localStorage.score;
+    } else {
+        fetchImage();
+    }
 };
 
 window.onload = () => {
     initializePage();
-    createMainContent();
-    createScoreContainer();
-    createCommentSection();
 };

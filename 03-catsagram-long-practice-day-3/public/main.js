@@ -1,4 +1,4 @@
-import { resetScore } from './score.js';
+// import { resetScore } from './score.js'; //no longer needed due to localStorage
 import { resetComments } from './comments.js';
 
 export const createMainContent = () => {
@@ -17,8 +17,6 @@ export const createMainContent = () => {
     container.appendChild(h1);
     container.append(newKittenBtn);
     container.appendChild(img);
-
-    fetchImage();
 };
 
 const fetchImage = async () => {
@@ -28,13 +26,17 @@ const fetchImage = async () => {
         // Converts to JSON
         const kittenData = await kittenResponse.json();
         // console.log(kittenData);
-        const kittenImgUrl = kittenData[0].url;
+        localStorage.setItem("imgURL", kittenData[0].url);
         const kittenImg = document.querySelector("img");
-        kittenImg.src = kittenImgUrl;
+        kittenImg.src = kittenData[0].url;
+
+        localStorage.setItem("score", 0);
+        const kittenScore = document.querySelector(".score");
+        kittenScore.innerText = 0;
 
         // After the image is finished loading, reset the score and comments
         kittenImg.addEventListener('load', () => {
-            resetScore();
+            // resetScore(); //no longer needed due to localStorage
             resetComments();
         });
     } catch (e) {

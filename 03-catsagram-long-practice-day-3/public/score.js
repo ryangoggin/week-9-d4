@@ -58,18 +58,21 @@ const createBtnContainer = () => {
 };
 
 const vote = e => {
-    const score = document.querySelector('.score');
-    let newScore = score.innerText;
     if (e.target.id === "upvote") {
-        newScore = parseInt(newScore) + 1;
+        localStorage.score = parseInt(localStorage.score) + 1;
     } else {
-        newScore = parseInt(newScore) - 1;
+        localStorage.score = parseInt(localStorage.score) - 1;
     }
-    
-    // update score
-    updateScore(newScore);
+
+    const score = document.querySelector('.score');
+    score.innerText = localStorage.score;
+
+    // updateScore not needed due to localStorage.score resetting upon fetchImage() being called
+    // updateScore(newScore);
 };
 
+/*
+//resetScore and updateScore have their functionality replaced by localStorage
 export const resetScore = () => {
     // reset score to 0
     updateScore(0);
@@ -79,3 +82,4 @@ const updateScore = (newScore) => {
     const score = document.querySelector('.score');
     score.innerText = newScore;
 };
+*/
