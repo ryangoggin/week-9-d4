@@ -29,6 +29,8 @@ function restoreTheme() {
 function clearTheme() {
     // Your code here
     document.cookie = "theme=; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    // OR
+    // document.cookies = `theme=; max-age=0`;
 }
 
 /* ================================ PHASE 3 ================================ */
