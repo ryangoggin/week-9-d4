@@ -3,16 +3,32 @@
 // For storing user's theme selection in cookies
 function storeTheme(themeName) {
     // Your code here
+    let themeCookie = `theme=${themeName}` // add max-age=15 for persistent cookie
+    document.cookie = themeCookie;
 }
 
 // For restoring theme from cookies, if selected by the user in the past
 function restoreTheme() {
     // Your code here
+    let cookies = document.cookie;
+    let cookiesArr = cookies.split("; ");
+    let themeCookie;
+    let theme;
+    for (let cookie of cookiesArr) {
+        if (cookie.startsWith("theme")) {
+            themeCookie = cookie;
+            theme = themeCookie.split("=")[1];
+        }
+    }
+    if (theme) {
+        setTheme(theme);
+    }
 }
 
 // For clearing theme selection from cookies (reset to default)
 function clearTheme() {
     // Your code here
+    document.cookie = "theme=; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 }
 
 /* ================================ PHASE 3 ================================ */
@@ -20,16 +36,32 @@ function clearTheme() {
 // For storing user's display name in cookies
 function storeName(displayName) {
     // Your code here
+    let displayCookie = `display=${displayName}`;
+    document.cookie = displayCookie;
 }
 
 // For restoring user's display name from cookies, if set in the past
 function restoreName() {
     // Your code here
+    let cookies = document.cookie;
+    let cookiesArr = cookies.split("; ");
+    let displayCookie;
+    let display;
+    for (let cookie of cookiesArr) {
+        if (cookie.startsWith("display")) {
+            displayCookie = cookie;
+            display = displayCookie.split("=")[1];
+        }
+    }
+    if (display) {
+        setInputValue("display-name", display);
+    }
 }
 
 // For clearing user's display name from cookies
 function clearName() {
     // Your code here
+    document.cookie = "display=; expires = Thu, 01 Jan 1970 00:00:00 GMT";
 }
 
 /* ========================================================================= */
