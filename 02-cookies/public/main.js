@@ -3,7 +3,7 @@
 // For storing user's theme selection in cookies
 function storeTheme(themeName) {
     // Your code here
-    let themeCookie = `theme=${themeName}` // add max-age=15 for persistent cookie
+    let themeCookie = `theme=${themeName}; max-age=15`;
     document.cookie = themeCookie;
 }
 
@@ -36,7 +36,7 @@ function clearTheme() {
 // For storing user's display name in cookies
 function storeName(displayName) {
     // Your code here
-    let displayCookie = `display=${displayName}`;
+    let displayCookie = `display=${displayName}; max-age=15`;
     document.cookie = displayCookie;
 }
 
