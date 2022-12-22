@@ -1,5 +1,5 @@
 // import { resetScore } from './score.js'; //no longer needed due to localStorage
-import { resetComments } from './comments.js';
+// import { resetComments } from './comments.js';
 
 export const createMainContent = () => {
     // Create h1
@@ -34,11 +34,15 @@ const fetchImage = async () => {
         const kittenScore = document.querySelector(".score");
         kittenScore.innerText = 0;
 
-        // After the image is finished loading, reset the score and comments
-        kittenImg.addEventListener('load', () => {
-            // resetScore(); //no longer needed due to localStorage
-            resetComments();
-        });
+        localStorage.setItem("comments", JSON.stringify([]));
+        const kittenComments = document.querySelector('.comments')
+        kittenComments.innerHTML = '';
+
+        // // After the image is finished loading, reset the score and comments
+        // kittenImg.addEventListener('load', () => {
+        //     // resetScore(); //no longer needed due to localStorage
+        //     resetComments();
+        // });
     } catch (e) {
         console.log("Failed to fetch image", e);
     }

@@ -1,6 +1,7 @@
 import { createMainContent } from './main.js';
 import { createScoreContainer } from './score.js';
 import { createCommentSection } from './comments.js';
+import { renderComments } from './comments.js';
 
 const initializePage = () => {
     // Create container
@@ -18,11 +19,15 @@ const initializePage = () => {
 
     //only use fetchImage if imgURL not already in localStorage
     if (localStorage.imgURL) {
+        //localStorage.imgURL maintains the current picture's imgURL
         const kittenImg = document.querySelector('img');
         kittenImg.src = localStorage.imgURL;
-
+        //localStorage.score maintains the current picture's score
         const kittenScore = document.querySelector(".score");
         kittenScore.innerText = localStorage.score;
+        //localStorage.comments maintains the current picture's comments
+        const kittenComments = JSON.parse(localStorage.comments);
+        renderComments(kittenComments);
     } else {
         fetchImage();
     }

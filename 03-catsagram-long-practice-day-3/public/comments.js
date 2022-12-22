@@ -74,18 +74,23 @@ const createCommentSubmitBtn = () => {
 
 const submitComment = e => {
     e.preventDefault();
-    const commentForm = document.querySelector(".comment-form");
+    const commentForm = document.querySelector('.comment-form');
     const formData = new FormData(commentForm);
-    const commentText = formData.get("user-comment");
-    console.log(commentText);
 
-    const commentInput = document.querySelector('#user-comment');
-    // const commentText = commentInput.value;
-    createComment(commentText);
-    commentInput.value = "";
+    const commentText = formData.get("user-comment");
+    commentForm.reset();
+
+    const storedComments = JSON.parse(localStorage.comments);
+    storedComments.push(commentText);
+    localStorage.comments = JSON.stringify(storedComments);
+
+    const comment = createComment(commentText, storedComments.length - 1);
+
+    const comments = document.querySelector(".comments");
+    comments.appendChild(comment);
 }
 
-const createComment = (commentText) => {
+export const createComment = (commentText, commentId) => {
     const newCommentContainer = document.createElement('div');
     newCommentContainer.style.display = "flex";
     newCommentContainer.style.margin = "10px";
@@ -97,19 +102,32 @@ const createComment = (commentText) => {
     deleteButton.className = "delete-button";
     deleteButton.style.marginLeft = "15px";
     deleteButton.innerText = 'Delete';
-    deleteButton.addEventListener('click', e => {
-        // Remove comment from HTML DOM
-        newCommentContainer.remove();
-    });
+    deleteButton.setAttribute('id', commentId);
+    deleteButton.addEventListener("click", event => {deleteComment(event)});
 
     newCommentContainer.appendChild(newComment);
     newCommentContainer.appendChild(deleteButton);
-    const comments = document.querySelector(".comments");
-    comments.appendChild(newCommentContainer);
+    return newCommentContainer;
 };
 
+export const renderComments = (comments) => {
+    const commentsContainer = document.querySelector(".comments");
+    commentsContainer.innerHTML = "";
+    comments.forEach((comment, i) => {
+        commentsContainer.appendChild(createComment(comment, i));
+    });
+}
 
-export const resetComments = () => {
-    const comments = document.querySelector(".comments");
-    Array.from(comments.children).forEach(child => child.remove());
-};
+const deleteComment = event => {
+    const storedComments = JSON.parse(localStorage.comments);
+    storedComments.splice(parseInt(event.target.id), 1);
+    localStorage.comments = JSON.stringify(storedComments);
+
+    renderComments(storedComments);
+}
+
+// no longer need after using localStorage
+// export const resetComments = () => {
+//     const comments = document.querySelector(".comments");
+//     Array.from(comments.children).forEach(child => child.remove());
+// };
