@@ -74,16 +74,19 @@ const createCommentSubmitBtn = () => {
 
 const submitComment = e => {
     e.preventDefault();
+    //get comment form's data
     const commentForm = document.querySelector('.comment-form');
     const formData = new FormData(commentForm);
 
     const commentText = formData.get("user-comment");
-    commentForm.reset();
+    commentForm.reset(); //reset so it gets each new comment submitted
 
+    //parse when pulling from localStorage, stringify to send back to localStorage
     const storedComments = JSON.parse(localStorage.comments);
     storedComments.push(commentText);
     localStorage.comments = JSON.stringify(storedComments);
 
+    //create comment with the commentText and give it the corresponding id to track for deleting later
     const comment = createComment(commentText, storedComments.length - 1);
 
     const comments = document.querySelector(".comments");
@@ -97,6 +100,13 @@ export const createComment = (commentText, commentId) => {
 
     const newComment = document.createElement("p");
     newComment.innerText = commentText;
+    newComment.style.width = "fit-content";
+    newComment.style.padding = "10px 15px";
+    newComment.style.marginBottom = "5px";
+    newComment.style.border = "solid 1px black";
+    newComment.style.borderRadius = "5px";
+    newComment.style.backgroundColor = "#006AFF";
+    newComment.style.color = "white";
 
     const deleteButton = document.createElement('button');
     deleteButton.className = "delete-button";

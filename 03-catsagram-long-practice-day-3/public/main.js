@@ -10,6 +10,8 @@ export const createMainContent = () => {
     const img = document.createElement("img");
     img.style.margin = "20px";
     img.style.maxWidth = "750px";
+    img.style.padding = "10px";
+    img.style.border = "groove 15px gray";
 
     const newKittenBtn = createNewKittenBtn();
 

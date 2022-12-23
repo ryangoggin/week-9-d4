@@ -1,0 +1,64 @@
+body {
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(11,9,121,1) 7%, rgba(0,212,255,1) 100%);
+}
+
+h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 48px;
+}
+
+#new-kitten {
+    border-radius: 5px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: larger;
+}
+
+#new-kitten:hover {
+    background-color: palegoldenrod;
+}
+
+.score-container {
+    padding: 15px;
+    border: 5px groove gray;
+    border-radius: 10px;
+}
+
+.score-container:hover {
+    background-color: lightcyan;
+}
+
+#upvote, #downvote, .score-display, .comment-form {
+    font-family: 'Arial Narrow', sans-serif;
+    font-weight: bolder;
+}
+
+#upvote:hover {
+    background-color: lightgreen;
+}
+
+#downvote:hover {
+    background-color: lightcoral;
+}
+
+input#user-comment {
+    padding: 5px;
+}
+
+.comments, .delete-button {
+    font-family: 'Arial Narrow', sans-serif;
+    font-weight: 600;
+}
+
+.comments {
+    background-color: white;
+}
+
+.delete-button {
+    margin-top: 20px;
+    padding: 5px 10px 5px;
+    height: fit-content;
+}
+
+.delete-button:hover {
+    background-color: lightcoral;
+}
