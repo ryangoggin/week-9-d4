@@ -62,3 +62,7 @@ input#user-comment {
 .delete-button:hover {
     background-color: lightcoral;
 }
+
+#submit-comment:hover {
+    background-color: lightgreen;
+}
