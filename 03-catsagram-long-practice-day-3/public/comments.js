@@ -94,10 +94,12 @@ const submitComment = e => {
 }
 
 export const createComment = (commentText, commentId) => {
+    //make container for new comments
     const newCommentContainer = document.createElement('div');
     newCommentContainer.style.display = "flex";
     newCommentContainer.style.margin = "10px";
 
+    //make new comment
     const newComment = document.createElement("p");
     newComment.innerText = commentText;
     newComment.style.width = "fit-content";
@@ -108,6 +110,7 @@ export const createComment = (commentText, commentId) => {
     newComment.style.backgroundColor = "#006AFF";
     newComment.style.color = "white";
 
+    //make delete button
     const deleteButton = document.createElement('button');
     deleteButton.className = "delete-button";
     deleteButton.style.marginLeft = "15px";
@@ -121,6 +124,7 @@ export const createComment = (commentText, commentId) => {
 };
 
 export const renderComments = (comments) => {
+    //needed for
     const commentsContainer = document.querySelector(".comments");
     commentsContainer.innerHTML = "";
     comments.forEach((comment, i) => {
